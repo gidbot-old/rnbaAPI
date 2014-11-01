@@ -38,4 +38,10 @@ class NbaPost extends EMongoDocument
     {
         return 'nba_posts';
     }
+
+    public function afterFind()
+    {
+        $this->linkAddress = (string)$this->linkAddress;
+        return parent::afterFind();
+    }
 }

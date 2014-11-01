@@ -14,7 +14,7 @@ class SiteController extends Controller
             $model->setAttributes($attributes);
             $model->postNumber = $this->getSize() +1;
             if($model->save()){
-                $this->redirect(array('index'));
+                $this->redirect(array('getCurrent'));
             }
 
         }
