@@ -27,6 +27,13 @@
     <div class="text-box">
 
         <div class="row col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+            <?php echo $form->labelEx($model, 'password'); ?>
+            <?php echo $form->passwordField($model, 'password', ['class' => 'form-control', 'placeholder' => 'Password']); ?>
+            <?php echo $form->error($model, 'password'); ?>
+
+        </div>
+
+        <div class="row col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
             <?php echo $form->labelEx($model, 'linkAddress'); ?>
             <?php echo $form->textField($model, 'linkAddress', ['class' => 'form-control', 'placeholder' => 'Enter Link']); ?>
             <?php echo $form->error($model, 'linkAddress'); ?>

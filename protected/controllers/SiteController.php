@@ -13,9 +13,20 @@ class SiteController extends Controller
             $attributes = $_POST['NbaPost'];
             $model->setAttributes($attributes);
             $model->postNumber = $this->getSize() +1;
-            if($model->save()){
-                $this->redirect(array('getCurrent'));
+
+            $criteria = new EMongoCriteria();
+            $criteria->user_name = 'admin';
+            $user = User::model()->find($criteria);
+
+            if (CPasswordHelper::verifyPassword($model->password, $user->password)) {
+                if($model->save()){
+                    $this->redirect(array('getCurrent'));
+                }
+            } else {
+                echo 'Error: Incorrect Password';
+                die();
             }
+
 
         }
 
@@ -31,6 +42,14 @@ class SiteController extends Controller
         echo json_encode($post);
         Yii::app()->end();
 
+    }
+
+    public function actionSaveUser() {
+        $user = new User();
+        if ($user->save()){
+            echo 'Success';
+            var_dump($user); die();
+        }
     }
 
     /**

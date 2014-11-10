@@ -7,6 +7,8 @@ class NbaPost extends EMongoDocument
     public $text;
     public $postNumber;
 
+    public $password;
+
 
     public static function model($className = __CLASS__)
     {
@@ -22,7 +24,7 @@ class NbaPost extends EMongoDocument
     {
         return [
             ['linkAddress, text', 'required'],
-            ['postNumber', 'safe']
+            ['postNumber, password', 'safe']
         ];
     }
 
@@ -43,5 +45,11 @@ class NbaPost extends EMongoDocument
     {
         $this->linkAddress = (string)$this->linkAddress;
         return parent::afterFind();
+    }
+
+    public function beforeSave()
+    {
+        $this->password = null;
+        return parent::beforeSave();
     }
 }
